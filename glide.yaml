@@ -1,0 +1,11 @@
+package: kubernetes/InitRelyOn_inside
+import:
+- package: k8s.io/apimachinery
+  subpackages:
+  - pkg/apis/meta/v1
+- package: k8s.io/client-go
+  version: v7.0.0
+  subpackages:
+  - kubernetes
+  - kubernetes/typed/apps/v1beta1
+  - rest
