@@ -9,10 +9,9 @@ spec:
       template:
         spec:
           containers:
-          - name: hello
-            image: busybox
+          - name: kubernetes-deployment-clean-cronjob
+            image: bigbigy/kubernetes-deployment-clean-cronjob:v0.1
+            command: ["/cleanDeployment"]
             args:
-            - /bin/sh
-            - -c
-            - date; echo Hello from the Kubernetes cluster
+            - -web_url="http://localhost:9090/alerts"
           restartPolicy: OnFailure
