@@ -1,0 +1,17 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: Kubernetes-Deployment-Clean-CronJob
+spec:
+  schedule: "30 2 * * 5"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kubernetes-deployment-clean-cronjob
+            image: bigbigy/kubernetes-deployment-clean-cronjob:latest 
+            command: ["/cleanDeployment"]
+            args:
+            - -web_url="http://localhost:9090/alerts"
+          restartPolicy: OnFailure
