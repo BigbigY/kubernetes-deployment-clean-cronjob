@@ -139,10 +139,7 @@ func main() {
 		flag.Usage()
 	}
 
-	
 	jsonstr := IndexNum(*webURL)
-
-	fmt.Println(jsonstr)
 	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
 	if err != nil {
 		panic(err)
