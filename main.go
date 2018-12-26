@@ -7,11 +7,9 @@ import (
 	"net/http"
 	"time"
 	"flag"
-	"path/filepath"
 	"log"
 	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/tools/clientcmd"
-	"k8s.io/client-go/util/homedir"
+	"k8s.io/client-go/rest"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -101,9 +99,6 @@ func CleanDeployment(mapList map[string]string,clientset *kubernetes.Clientset) 
 
 func CleanIngress(mapList map[string]string,clientset *kubernetes.Clientset) {
 	for namespace,deploymentname := range mapList {  
-		// GET
-		// ingress, err := clientset.ExtensionsV1beta1().Ingresses(namespace).Get(deploymentname, metav1.GetOptions{})
-		// DELETE 
 		log.Printf("delete ingress:[%v %v]\n",namespace,deploymentname)
 	    err := clientset.ExtensionsV1beta1().Ingresses(namespace).Delete(deploymentname, &metav1.DeleteOptions{})
 		if err != nil {
@@ -114,9 +109,6 @@ func CleanIngress(mapList map[string]string,clientset *kubernetes.Clientset) {
 
 func CleanService(mapList map[string]string,clientset *kubernetes.Clientset) {
 	for namespace,deploymentname := range mapList {  
-		// GET
-		// service, err := clientset.CoreV1().Services(namespace).Get(deploymentname, metav1.GetOptions{})
-		// DELETE
 		log.Printf("delete services:[%v %v]\n",namespace,deploymentname)
 		err := clientset.CoreV1().Services(namespace).Delete(deploymentname, &metav1.DeleteOptions{})
 		if err != nil {
@@ -126,12 +118,6 @@ func CleanService(mapList map[string]string,clientset *kubernetes.Clientset) {
 }
 
 func main() {
-	var kubeconfig *string
-	if home := homedir.HomeDir(); home != "" {
-		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
-	} else {
-		kubeconfig = flag.String("kubeconfig", "", "absolute path to the kubeconfig file")
-	}
 	var webURL = flag.String("web_url", "", "Get http url (default return json)")
 	flag.Parse()
 
@@ -140,10 +126,13 @@ func main() {
 	}
 
 	jsonstr := IndexNum(*webURL)
-	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
+
+	// creates the in-cluster config
+	config, err := rest.InClusterConfig()
 	if err != nil {
-		panic(err)
+		panic(err.Error())
 	}
+	// creates the clientset
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
 		panic(err)
