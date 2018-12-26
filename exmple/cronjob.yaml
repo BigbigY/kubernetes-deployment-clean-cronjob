@@ -13,5 +13,5 @@ spec:
             image: bigbigy/kubernetes-deployment-clean-cronjob:latest 
             command: ["/cleanDeployment"]
             args:
-            - -web_url="http://localhost:9090/alerts"
+            - -web_url="http://localhost:9090/api/v1/alerts"
           restartPolicy: OnFailure
