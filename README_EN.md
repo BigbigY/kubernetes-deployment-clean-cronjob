@@ -46,7 +46,6 @@ make clean
 ```
 
 ## Usage
-**probe interval is 3 seconds**
 ```
 Usage of ./bin/cleanDeployment:
   -web_url string
