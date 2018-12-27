@@ -22,6 +22,11 @@ build-docker:
 build:
 	$(GO_BIN) build -o bin/$(BINARY_NAME) .
 
+.PHONY: goos-build
+goos-build:
+	GOOS=linux GOARCH=amd64 $(GO_BIN) build -o bin/$(BINARY_NAME) .
+
+
 .PHONY: lint
 lint:
 	$(GO_LINT) .
