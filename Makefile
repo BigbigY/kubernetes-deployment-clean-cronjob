@@ -22,10 +22,17 @@ build-docker:
 build:
 	$(GO_BIN) build -o bin/$(BINARY_NAME) .
 
-.PHONY: goos-build
-goos-build:
+.PHONY: mac-build
+mac-build:
+	GOOS=darwin GOARCH=amd64 $(GO_BIN) build -o bin/$(BINARY_NAME) .
+
+.PHONY: linux-build
+linux-build:
 	GOOS=linux GOARCH=amd64 $(GO_BIN) build -o bin/$(BINARY_NAME) .
 
+.PHONY: win-build
+win-build:
+	GOOS=windows GOARCH=amd64 $(GO_BIN) build -o bin/$(BINARY_NAME) .
 
 .PHONY: lint
 lint:
