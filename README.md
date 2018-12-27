@@ -4,7 +4,7 @@
 
 [English](https://github.com/BigbigY/kubernetes-deployment-clean-cronjob/blob/master/README_EN.md) | [中文](https://github.com/BigbigY/kubernetes-deployment-clean-cronjob/blob/master/README.md)
 
-Kubernetes-Deployment-Clean-CronJob 用于定时清理废弃deployment的任务计划。
+Kubernetes-Deployment-Clean-CronJob 结合Prometheus API 定时清理废弃deployment的任务计划。
 
 
 ## Install

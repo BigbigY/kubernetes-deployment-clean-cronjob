@@ -4,7 +4,7 @@
 
 [English](https://github.com/BigbigY/kubernetes-deployment-clean-cronjob/blob/master/README_EN.md) | [中文](https://github.com/BigbigY/kubernetes-deployment-clean-cronjob/blob/master/README.md)
 
-kubernetes-deployment-clean-cronjob task plan for regularly cleaned waste Deployment.
+kubernetes-deployment-clean-cronjob combined with Prometheus API regularly cleaned scrap task plan deployment.
 
 ## Install
 
