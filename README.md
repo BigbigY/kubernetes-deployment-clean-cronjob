@@ -31,7 +31,7 @@ sudo apt-get install glide
 ```
 make dep
 ```
-2.构建二进制文件
+2.构建二进制文件`跨平台编译需要指定 mac-build linux-build win-build`
 ```
 make build
 ```

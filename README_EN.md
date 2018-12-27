@@ -30,7 +30,7 @@ sudo apt-get install glide
 ```
 make dep
 ```
-2.Build binaries
+2.Build binaries`cross platform compilation mac-build linux-build win-build`
 ```
 make build
 ```
