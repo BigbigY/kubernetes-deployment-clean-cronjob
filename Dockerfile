@@ -1,3 +1,3 @@
 FROM alpine:3.6
-MAINTAINER  wangyangyang <wangyangyang@huobi.com>
+MAINTAINER  wangyangyang <yy520it@163.com>
 ADD bin/cleanDeployment /cleanDeployment
